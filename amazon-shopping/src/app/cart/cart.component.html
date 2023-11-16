@@ -1,0 +1,14 @@
+<div class="cart" *ngIf="cartItems.length !== 0">
+  <div class="cart-items-container">
+    <app-cart-row (click)="navigateToTme(ci.code)" *ngFor="let ci of cartItems" [qty]="ci.qty" [item]="getItem(ci.code)" (onRemove)="loadAllCartItems(); calculateNetTotal()"></app-cart-row>
+  </div>
+  <div class="checkout-container">
+    <h2>Net Total: {{total| currency: 'USD'}}</h2>
+    <button>Checkout</button>
+  </div>
+</div>
+<div class="empty-cart" *ngIf="cartItems.length === 0">
+  <div class="cart-icon"></div>
+  <h2>Cart is empty. Plese add items to cart.</h2>
+  <div><a routerLink="/home">Go to Product Listing</a></div>
+</div>
